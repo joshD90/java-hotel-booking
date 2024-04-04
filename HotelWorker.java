@@ -2,8 +2,8 @@ public class HotelWorker extends User {
 
 	private String password;
 
-	HotelWorker(String name, String email, int id, String password) {
-		super(name, email, id);
+	HotelWorker(String name, String email, int id, String password, BookingManager bookingManager) {
+		super(name, email, id, bookingManager);
 		this.password = password;
 	}
 

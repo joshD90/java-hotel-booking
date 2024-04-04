@@ -1,23 +1,38 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BookingManager {
 
-    public void checkAvailable(Hotel hotel, LocalDate startDate, LocalDate endDate) {
+    private Hotel hotel;
+
+    BookingManager(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public ArrayList<Room> checkAvailable(LocalDate startDate, LocalDate endDate) {
         LocalDate[] datesToCheck = createDatesFromStartToEnd(startDate, endDate);
         ArrayList<Room> roomsAvailable = hotel.returnRoomsAvailable(datesToCheck);
         System.out.println(roomsAvailable + "rooms available");
         System.out.println(roomsAvailable.size());
+
+        return roomsAvailable;
     }
 
-    public void bookIntoRoom() {
-        // TODO - implement BookingManagementController.bookIntoRoom
-        throw new UnsupportedOperationException();
+    public Booking bookIntoRoom(int roomIndex, LocalDate startDate, LocalDate endDate, User user) {
+        // this is done as a local date array
+        LocalDate[] allDatesToBook = createDatesFromStartToEnd(startDate, endDate);
+        // convert into ArrayList
+        ArrayList<LocalDate> changedToList = new ArrayList<>(Arrays.asList(allDatesToBook));
+        // TODO we should error handle in case its already booked in at this point
+        hotel.getRoomByIndex(roomIndex).addDatesBooked(changedToList);
+        return createBooking(startDate, endDate, roomIndex, user);
     }
 
-    public void createBooking() {
-        // TODO - implement BookingManagementController.createBooking
-        throw new UnsupportedOperationException();
+    public Booking createBooking(LocalDate dateFrom, LocalDate dateTo, int roomId, User user) {
+        Booking thisBooking = new Booking(dateFrom, dateTo, roomId, user.getEmail());
+        return thisBooking;
     }
 
     public void sendBookingConfirmationEmail() {

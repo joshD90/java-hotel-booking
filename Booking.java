@@ -1,16 +1,17 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Booking {
 
-	private Date dateFrom;
+	private LocalDate dateFrom;
 	private int room;
-	private Date dateTo;
+	private LocalDate dateTo;
 	private String userEmail;
 	private LocalDateTime createdAt;
 
 	// Constructor
-	public Booking(Date dateFrom, int room, Date dateTo, String userEmail) {
+	public Booking(LocalDate dateFrom, LocalDate dateTo, int room, String userEmail) {
 		this.dateFrom = dateFrom;
 		this.room = room;
 		this.dateTo = dateTo;
@@ -20,11 +21,11 @@ public class Booking {
 	}
 
 	// Getters and Setters
-	public Date getDateFrom() {
+	public LocalDate getDateFrom() {
 		return dateFrom;
 	}
 
-	public void setDateFrom(Date dateFrom) {
+	public void setDateFrom(LocalDate dateFrom) {
 		this.dateFrom = dateFrom;
 	}
 
@@ -36,11 +37,11 @@ public class Booking {
 		this.room = room;
 	}
 
-	public Date getDateTo() {
+	public LocalDate getDateTo() {
 		return dateTo;
 	}
 
-	public void setDateTo(Date dateTo) {
+	public void setDateTo(LocalDate dateTo) {
 		this.dateTo = dateTo;
 	}
 

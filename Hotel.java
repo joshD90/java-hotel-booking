@@ -76,6 +76,11 @@ public class Hotel {
 		return address;
 	}
 
+	// public as it is being accessed by the booking manager
+	public Room getRoomByIndex(int index) {
+		return hotelRooms[index];
+	}
+
 	// setters
 	public void setName(String name) {
 		this.name = name;
